@@ -1,0 +1,34 @@
+{
+  "model": "RandomForestClassifier",
+  "n_estimators": 200,
+  "max_depth": 6,
+  "features": [
+    "impressions_90d",
+    "days_since_last_update",
+    "avg_position",
+    "ctr",
+    "content_age_days",
+    "word_count",
+    "sessions_90d",
+    "engagement_rate"
+  ],
+  "label": "trend_direction == 'down' (same-window proxy)",
+  "split": "GroupShuffleSplit on client_id, test_size=0.2, random_state=42",
+  "base_rate": 0.542,
+  "precision_at_k_fair": {
+    "k": 26,
+    "baseline": 1.0,
+    "tree": 0.731,
+    "rf": 0.962
+  },
+  "leakage_check": {
+    "clean_auc": 0.58,
+    "leaked_auc": 1.0
+  },
+  "action_counts": {
+    "review_soon": 7890,
+    "no_action": 7041,
+    "monitor": 6175,
+    "review_urgent": 1195
+  }
+}
